@@ -70,13 +70,13 @@ Resources:
     Type: "AWS::EC2::LaunchTemplate"
     Properties:
       LaunchTemplateData:
-        ImageId: ami-038b5c5d2ad6a5090
+        ImageId: 
         InstanceType: t2.medium
         KeyName: !Ref KeyPairName
         SecurityGroupIds:
           - !GetAtt PetclinicDemoSG.GroupId
         UserData:
-          Fn::Base64: |
+          Fn::Base64: ami-0947d2ba12ee1ff75
             #! /bin/bash
             yum update -y
             hostnamectl set-hostname petclinic-dev-server
@@ -89,6 +89,7 @@ Resources:
             chmod +x /usr/local/bin/docker-compose
             yum install git -y
             yum install java-11-amazon-corretto -y
+            cd /home/ec2-user
             git clone https://github.com/belkiskara/microservices-ci-cd-pipeline-with-petclinic-app.git
             git fetch
             git checkout dev
