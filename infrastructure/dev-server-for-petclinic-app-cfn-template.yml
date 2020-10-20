@@ -70,27 +70,32 @@ Resources:
     Type: "AWS::EC2::LaunchTemplate"
     Properties:
       LaunchTemplateData:
-        ImageId: 
+        ImageId: ami-038b5c5d2ad6a5090
         InstanceType: t2.medium
         KeyName: !Ref KeyPairName
         SecurityGroupIds:
           - !GetAtt PetclinicDemoSG.GroupId
         UserData:
-          Fn::Base64: ami-0947d2ba12ee1ff75
+          Fn::Base64: |
             #! /bin/bash
+            # update os
             yum update -y
+            # set hostname as petclinic-dev-server
             hostnamectl set-hostname petclinic-dev-server
+            # install docker
             amazon-linux-extras install docker -y
             systemctl start docker
             systemctl enable docker
             usermod -a -G docker ec2-user
-            curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" \
-            -o /usr/local/bin/docker-compose
+            # install docker compose
+            curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
             chmod +x /usr/local/bin/docker-compose
-            yum install git -y
+            # install JDK 11
             yum install java-11-amazon-corretto -y
+            # install Git
+            yum install git -y
             cd /home/ec2-user
-            git clone https://github.com/belkiskara/microservices-ci-cd-pipeline-with-petclinic-app.git
+            git clone https://github.com/dataciden/microservices-ci-cd-pipeline-petclinic-app.git
             git fetch
             git checkout dev
   PetclinicServer:
