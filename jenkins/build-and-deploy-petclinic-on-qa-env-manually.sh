@@ -1,7 +1,7 @@
 PATH="$PATH:/usr/local/bin"
 APP_NAME="petclinic"
 APP_REPO_NAME="belkiskara/petclinic-app-qa"
-APP_STACK_NAME="Belkis-petclinic-App-QA-27"
+APP_STACK_NAME="Belkis-petclinic-App-QA-1"
 CFN_KEYPAIR="belkis-petclinic-qa.key"
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 AWS_REGION="us-east-1"
