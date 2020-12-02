@@ -8,13 +8,13 @@ metadata:
     kompose.version: 1.22.0 (955b78124)
   creationTimestamp: null
   labels:
-    io.kompose.service: api-gateway
-  name: api-gateway
+    io.kompose.service: vets-service
+  name: vets-service
 spec:
   replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: api-gateway
+      io.kompose.service: vets-service
   strategy: {}
   template:
     metadata:
@@ -25,13 +25,13 @@ spec:
         kompose.version: 1.22.0 (955b78124)
       creationTimestamp: null
       labels:
-        io.kompose.service: api-gateway
+        io.kompose.service: vets-service
     spec:
       containers:
-      - image: IMAGE_TAG_API_GATEWAY
-        name: api-gateway
+      - image: IMAGE_TAG_VETS_SERVICE
+        name: vets-service
         ports:
-          - containerPort: 8080
+          - containerPort: 8083
         resources: {}
       initContainers:
       - name: init-discovery-server

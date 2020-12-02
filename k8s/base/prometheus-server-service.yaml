@@ -4,18 +4,17 @@ metadata:
   annotations:
     kompose.cmd: kompose convert -f docker-compose.yml -o base
     kompose.image-pull-secret: regcred
-    kompose.service.expose: petclinic.belkiskara.me
     kompose.version: 1.22.0 (955b78124)
   creationTimestamp: null
   labels:
-    io.kompose.service: customers-service
-  name: customers-service
+    io.kompose.service: prometheus-server
+  name: prometheus-server
 spec:
   ports:
-    - name: "8081"
-      port: 8081
-      targetPort: 8081
+    - name: "9091"
+      port: 9091
+      targetPort: 9090
   selector:
-    io.kompose.service: customers-service
+    io.kompose.service: prometheus-server
 status:
   loadBalancer: {}

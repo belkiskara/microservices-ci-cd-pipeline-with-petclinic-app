@@ -3,19 +3,17 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert -f docker-compose.yml -o base
-    kompose.image-pull-secret: regcred
-    kompose.service.expose: petclinic.belkiskara.me
     kompose.version: 1.22.0 (955b78124)
   creationTimestamp: null
   labels:
-    io.kompose.service: api-gateway
-  name: api-gateway
+    io.kompose.service: tracing-server
+  name: tracing-server
 spec:
   ports:
-    - name: "8080"
-      port: 8080
-      targetPort: 8080
+    - name: "9411"
+      port: 9411
+      targetPort: 9411
   selector:
-    io.kompose.service: api-gateway
+    io.kompose.service: tracing-server
 status:
   loadBalancer: {}
